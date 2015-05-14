@@ -7,6 +7,7 @@ public class Game {
 
     private final Difficulty difficulty;
     private List<Round> rounds;
+    private int roundsPlayed;
 
     public Game(final int rounds, final Difficulty difficulty, List<String> availableWords) {
         this.rounds = new ArrayList<>();
@@ -18,6 +19,14 @@ public class Game {
         final int numWords = difficulty.getWords();
         for(int i = 0; i < rounds; i++) {
             this.rounds.add(new Round(availableWords, numWords));
+        }
+    }
+
+    public Round getCurrentRound() throws GameOverException {
+        try {
+            return rounds.get(roundsPlayed);
+        } catch(IndexOutOfBoundsException e) {
+            throw new GameOverException("Game is finished, no more rounds");
         }
     }
 }

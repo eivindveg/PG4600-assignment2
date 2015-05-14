@@ -79,4 +79,8 @@ public class Round {
             throw new NullPointerException("Could not prepare answer free list");
         }
     }
+
+    protected boolean guessAnswer(final String guess) {
+        return guess.equals(answer);
+    }
 }

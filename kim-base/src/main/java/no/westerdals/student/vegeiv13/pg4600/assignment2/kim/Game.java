@@ -29,4 +29,10 @@ public class Game {
             throw new GameOverException("Game is finished, no more rounds");
         }
     }
+
+    public boolean guessAnswer(final String guess) throws GameOverException {
+        Round currentRound = getCurrentRound();
+        roundsPlayed += difficulty.getWords();
+        return currentRound.guessAnswer(guess);
+    }
 }

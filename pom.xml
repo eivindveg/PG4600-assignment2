@@ -6,7 +6,11 @@
 
     <groupId>no.westerdals.student.vegeiv13</groupId>
     <artifactId>pg4600-assignment2</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>kim-base</module>
+    </modules>
 
 
 </project>

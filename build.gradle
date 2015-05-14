@@ -1,0 +1,14 @@
+buildscript {
+    group = 'no.westerdals.student.vegeiv13'
+    version = '1.0'
+
+    repositories {
+        jcenter()
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}

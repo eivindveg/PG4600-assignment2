@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kim\'s Game</string>
+    <string name="play_game">Play</string>
+    <string name="leaderboard">Leaderboard</string>
+</resources>

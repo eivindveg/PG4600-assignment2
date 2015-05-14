@@ -74,6 +74,7 @@ public class Round {
 
         // Checks and balances
         if(words.remove(answer)) {
+            Collections.shuffle(words);
             return words;
         } else {
             throw new NullPointerException("Could not prepare answer free list");

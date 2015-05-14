@@ -6,6 +6,8 @@ buildscript {
         jcenter()
     }
 }
+apply plugin: 'maven'
+
 
 allprojects {
     repositories {

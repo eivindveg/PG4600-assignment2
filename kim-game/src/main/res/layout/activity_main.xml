@@ -6,20 +6,11 @@
         android:orientation="vertical"
         tools:context=".Main">
 
-        <RadioGroup
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:id="@+id/radioGroup">
-        </RadioGroup>
-
         <Button
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="@string/play_game"
-                android:id="@+id/button"
+                android:id="@+id/play_button"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"/>
 
@@ -27,9 +18,9 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="@string/leaderboard"
-                android:id="@+id/button2"
-                android:layout_below="@+id/button"
-                android:layout_alignLeft="@+id/button"
+                android:id="@+id/leaderboard_button"
+                android:layout_below="@+id/play_button"
+                android:layout_alignStart="@+id/play_button"
                 android:layout_marginTop="40dp"/>
 
 </RelativeLayout>

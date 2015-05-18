@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="drawer_items">
+        <item>Refresh items</item>
+        <item>Close</item>
+    </array>
+</resources>

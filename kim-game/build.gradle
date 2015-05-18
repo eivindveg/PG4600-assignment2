@@ -10,7 +10,6 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.1'
-        classpath 'no.westerdals.student.vegeiv13:kim-base:1.0'
     }
 }
 
@@ -19,6 +18,7 @@ apply plugin: 'com.android.application'
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile project(':kim-base')
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.wordnik:wordnik-android-client:4.0'
 }

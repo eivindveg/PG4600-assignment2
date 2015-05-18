@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx">
+
+    <application android:label="KimJavaFX" >
+    </application>
+
+</manifest>

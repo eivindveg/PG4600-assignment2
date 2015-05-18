@@ -1,2 +1,5 @@
-include 'kim-base'
-include 'kim-game'
+include ':unesco-browser'
+include ':kim-base', 'no.student.westerdals.vegeiv13:kim-base:1.0'
+include ':kim-game'
+include ':kim-jfx'
+

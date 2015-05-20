@@ -14,4 +14,6 @@
 
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
+    <string name="info_title">Title</string>
+    <string name="site_image_description">Image for heritage site</string>
 </resources>

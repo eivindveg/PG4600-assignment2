@@ -15,12 +15,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </FrameLayout>
+        <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:id="@+id/progressBar"/>
     </RelativeLayout>
-    <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:id="@+id/progressBar"/>
 
     <ListView
             android:id="@+id/left_drawer"

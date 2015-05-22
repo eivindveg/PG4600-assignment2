@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="drawer_items">
-        <item name="new_game">Play</item>
-        <item name="load_game">App Home</item>
-        <item name="leaderboard">Leaderboards</item>
-    </string-array>
-</resources>

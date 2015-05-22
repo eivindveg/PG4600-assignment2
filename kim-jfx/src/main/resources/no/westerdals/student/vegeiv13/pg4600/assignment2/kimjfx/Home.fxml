@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers.HomeController">
+   <top>
+      <Label text="Welcome to Kim's Game!" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <center>
+            <BorderPane BorderPane.alignment="CENTER">
+               <bottom>
+                  <Button mnemonicParsing="false" onAction="#play" text="Play!" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </bottom>
+               <top>
+                  <Label text="Choose difficulty:" BorderPane.alignment="CENTER" />
+               </top>
+               <center>
+                  <ListView fx:id="difficulties" maxHeight="150.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </center>
+         <bottom>
+            <Button mnemonicParsing="false" onAction="#showScores" text="Scores" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+      </BorderPane>
+   </center>
+</BorderPane>

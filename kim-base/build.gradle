@@ -1,7 +1,0 @@
-apply plugin: 'java'
-
-group = "no.westerdals.student.vegeiv13"
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-}

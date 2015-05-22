@@ -16,7 +16,7 @@
 
     <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             android:id="@+id/info_image"
             android:layout_below="@+id/info_title"
             android:layout_centerHorizontal="true"
@@ -30,6 +30,7 @@
             android:id="@+id/info_description"
             android:layout_below="@+id/info_image"
             android:layout_centerHorizontal="true"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textSize="10sp"/>
 
 </RelativeLayout>

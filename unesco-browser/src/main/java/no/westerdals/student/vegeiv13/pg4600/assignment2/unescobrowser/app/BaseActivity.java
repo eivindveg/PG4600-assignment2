@@ -28,9 +28,7 @@ public class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_PROGRESS);
-        System.out.println("Base");
         setContentView(R.layout.activity_base);
-        System.out.println("Base done");
 
         mTitle = getTitle();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

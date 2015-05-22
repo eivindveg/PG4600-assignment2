@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.models.HeritageSite;
@@ -85,10 +84,7 @@ public class UnescoMapWorker extends AsyncTask<Void, Integer, List<HeritageSite>
 
         googleMap.setInfoWindowAdapter(new UnescoInfoWindowAdapter(inflater, heritageSites));
         for (final HeritageSite heritageSite : heritageSites) {
-            MarkerOptions options = new MarkerOptions();
-            options.position(new LatLng(heritageSite.getLatitude(), heritageSite.getLongitude()));
-            options.title(heritageSite.getTitle());
-            options.snippet(heritageSite.getDescription());
+            MarkerOptions options = heritageSite.toMarkerOptions();
             Marker marker = googleMap.addMarker(options);
             heritageSite.setMarkerId(marker.getId());
         }

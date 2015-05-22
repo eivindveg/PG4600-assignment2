@@ -1,6 +1,11 @@
 package no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.models;
 
-public class HeritageSite {
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.Serializable;
+
+public class HeritageSite implements Serializable {
 
     private final String title;
     private final String description;
@@ -49,5 +54,13 @@ public class HeritageSite {
 
     public Double getLongitude() {
         return longitude;
+    }
+
+    public MarkerOptions toMarkerOptions() {
+        MarkerOptions options = new MarkerOptions();
+        options.position(new LatLng(getLatitude(), getLongitude()));
+        options.title(getTitle());
+        options.snippet(getDescription());
+        return options;
     }
 }

@@ -7,10 +7,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.*;
 
-public class BaseActivity extends Activity {
+public abstract class BaseActivity extends Activity {
 
     protected FrameLayout mContentFrame;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -27,7 +26,6 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_PROGRESS);
         setContentView(R.layout.activity_base);
 
         mTitle = getTitle();
@@ -86,18 +84,19 @@ public class BaseActivity extends Activity {
         Class<? extends BaseActivity> intentClass;
         switch (position) {
             case 0:
-                intentClass = BaseActivity.class;
+                refresh();
+                return;
+            case 1:
+                finish();
+                return;
             default:
                 return;
         }
-
-        /*// Do not start an activity if it's the same
-        if (intentClass.equals(this.getClass())) {
-            return;
-        }
-
-        startActivity(new Intent(this, intentClass));*/
+        // Unreachable in this case
+        //startActivity(new Intent(this, intentClass));
     }
+
+    public abstract void refresh();
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

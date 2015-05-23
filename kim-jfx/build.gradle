@@ -10,9 +10,7 @@ buildscript {
     }
 }
 
-// SET PATH TO SDK LOCATION
-ext.set('androidsdk', 'D:\\Developer\\android\\android-sdk\\platforms\\android-21');
-
+ext.set('androidsdk', "$System.env.ANDROID_HOME" + File.separator + "platforms" + File.separator + "android-21" + File.separator + "android.jar")
 
 apply plugin: 'org.javafxports.jfxmobile'
 apply plugin: 'me.tatarka.retrolambda'
@@ -24,12 +22,12 @@ repositories {
 }
 
 dependencies {
-    compile files("$androidsdk/android.jar")
+    compile files("$androidsdk")
     compile 'org.javafxports:jfxdvk:8u60-b1'
     compile 'com.j256.ormlite:ormlite-jdbc:4.48'
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'org.xerial:sqlite-jdbc:3.8.10.1'
-    compile ('com.wordnik:wordnik-java-client:1.0.0') {
+    compile('com.wordnik:wordnik-java-client:1.0.0') {
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
     compile 'com.google.code.gson:gson:2.3.1'

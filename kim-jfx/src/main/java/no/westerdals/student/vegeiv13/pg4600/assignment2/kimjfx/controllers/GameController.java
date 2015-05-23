@@ -3,6 +3,7 @@ package no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers;
 import com.j256.ormlite.dao.Dao;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -51,7 +52,11 @@ public class GameController extends Controller<KimGame> {
         super.setApplication(application);
         //root.getChildren().remove(alternatives);
         Dao<KimWord, Integer> dao = application.getConnectionHandler().getDao(KimWord.class);
-        System.out.println("Hello application");
+
+        wordList.getItems().addListener((ListChangeListener<? super KimWord>) c ->
+                wordList.setPrefSize(wordList.getPrefWidth(), wordList.getItems().size() * 24)
+        );
+
         round.addListener((observable, oldValue, newValue) -> {
             if (newValue == null) {
                 System.out.println("Escaping");
@@ -64,19 +69,16 @@ public class GameController extends Controller<KimGame> {
             game = new Game(difficulty, task.getValue());
             round.setValue(game.getRound());
         });
-        System.out.println("Starting task");
         new Thread(task).start();
-        System.out.println("Task started");
     }
 
     private void startGame(final List<KimWord> value) {
         ObservableList<Node> children = root.getChildren();
         children.remove(progressBox);
-        if(!children.contains(readyButton)) {
+        if (!children.contains(readyButton)) {
             children.add(readyButton);
         }
         alternatives.getChildren().clear();
-        System.out.println("Generating round");
         wordList.getItems().setAll(value);
         readyButton.setOnAction(event -> displayAlternatives());
         readyButton.setDisable(false);
@@ -93,7 +95,7 @@ public class GameController extends Controller<KimGame> {
             button.setOnAction(event -> {
                 boolean correct = game.guessAnswer(word);
                 if (!correct) {
-                    getApplication().postGame(game.getScore());
+                    getApplication().startPostGame(game.getScore());
                 } else {
                     System.out.println("Correct");
                     this.round.setValue(game.getRound());

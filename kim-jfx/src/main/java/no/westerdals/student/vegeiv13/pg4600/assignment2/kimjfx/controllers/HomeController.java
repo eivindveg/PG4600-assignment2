@@ -2,6 +2,7 @@ package no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.KimGame;
@@ -12,6 +13,10 @@ public class HomeController extends Controller<KimGame> {
 
     @FXML
     private ListView<Difficulty> difficulties;
+
+    @FXML
+    private Button scores;
+
     private int timesPlayed = 0;
 
     @FXML
@@ -34,6 +39,9 @@ public class HomeController extends Controller<KimGame> {
 
         Difficulty[] difficulties = Difficulty.values();
         this.difficulties.setItems(FXCollections.observableArrayList(difficulties));
+        scores.setOnAction(event -> {
+            application.startLeaderBoard();
+        });
     }
 
 }

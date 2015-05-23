@@ -8,16 +8,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers.GameController;
-import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers.HomeController;
+import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers.LeaderboardController;
+import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers.PostGameController;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.db.AndroidConnectionHandler;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.db.ConnectionHandler;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.db.DesktopConnectionHandler;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.helpers.Controller;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.models.Difficulty;
+import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.models.ScoreEntry;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.utils.OSHandler;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 
 
 public class KimGame extends Application {
@@ -31,22 +35,18 @@ public class KimGame extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        primaryStage.setResizable(false);
-
         primaryStage.setScene(new Scene(startHome()));
         primaryStage.show();
     }
 
-    private Parent startHome() {
-        HomeController controller = (HomeController) replaceSceneContent("Home.fxml");
-        controller.setApplication(this);
+    public Parent startHome() {
+        replaceSceneContent("Home.fxml");
         return root;
     }
 
     public Parent startGame(final Difficulty difficulty) {
-        GameController controller = (GameController) replaceSceneContent("Game.fxml");
-        controller.setDifficulty(difficulty);
-        controller.setApplication(this);
+        final Controller<KimGame> controller = replaceSceneContent("Game.fxml");
+        ((GameController) controller).setDifficulty(difficulty);
         return root;
     }
 
@@ -57,25 +57,45 @@ public class KimGame extends Application {
         try {
             final Node layout = loader.load();
             root.getChildren().setAll(layout);
-            return loader.getController();
+            Controller<KimGame> controller = loader.getController();
+            controller.setApplication(this);
+            return controller;
         } catch (IOException e) {
-            throw new RuntimeException("Could not load resources!", e);
+            throw new RuntimeException("Could not load resource" + fxml, e);
         }
 
     }
 
     public ConnectionHandler getConnectionHandler() {
-        if(connectionHandler == null) {
-            if(OSHandler.IS_ANDROID) {
+        if (connectionHandler == null) {
+            if (OSHandler.IS_ANDROID) {
                 connectionHandler = new AndroidConnectionHandler();
-            } else if(OSHandler.IS_DESKTOP) {
+            } else if (OSHandler.IS_DESKTOP) {
                 connectionHandler = new DesktopConnectionHandler();
             }
         }
         return connectionHandler;
     }
 
-    public void postGame(final int score) {
+    public Parent startPostGame(final int score) {
+        PostGameController controller = (PostGameController) replaceSceneContent("PostGame.fxml");
+        controller.setScore(score);
+        return root;
+    }
 
+    public Parent startLeaderBoard(final List<ScoreEntry> scoreEntries) {
+        LeaderboardController controller = (LeaderboardController) replaceSceneContent("LeaderBoard.fxml");
+        controller.setEntries(scoreEntries);
+        return root;
+    }
+
+    public Parent startLeaderBoard() {
+        try {
+            List<ScoreEntry> scoreEntries = getConnectionHandler().getDao(ScoreEntry.class).queryForAll();
+            startLeaderBoard(scoreEntries);
+            return root;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

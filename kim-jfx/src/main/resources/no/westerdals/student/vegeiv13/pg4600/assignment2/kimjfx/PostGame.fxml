@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers.PostGameController">
+   <top>
+      <HBox>
+         <children>
+            <Label text="Congratulations! You scored: " BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="scoreLabel" text="N/A">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox>
+         <children>
+            <Label text="Please enter your name!" />
+            <TextField fx:id="name" BorderPane.alignment="CENTER" />
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <Button fx:id="enter" mnemonicParsing="false" text="Enter" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

@@ -20,4 +20,10 @@ public class OSHandler {
         }
         throw new RuntimeException("Could not set up working directory");
     }
+
+    public static void scaleListViewToItems() {
+        if(IS_ANDROID) {
+
+        }
+    }
 }

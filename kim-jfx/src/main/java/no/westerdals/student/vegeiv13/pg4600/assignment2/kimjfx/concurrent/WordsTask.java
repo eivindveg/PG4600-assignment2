@@ -27,7 +27,7 @@ public class WordsTask extends Task<List<KimWord>> {
 
     private Dao<KimWord, Integer> wordsDao;
 
-    public WordsTask(Dao<KimWord, Integer> wordsDao) {
+    public WordsTask(final Dao<KimWord, Integer> wordsDao) {
         this.wordsDao = wordsDao;
     }
 

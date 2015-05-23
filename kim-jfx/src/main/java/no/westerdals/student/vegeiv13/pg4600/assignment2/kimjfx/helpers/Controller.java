@@ -13,4 +13,5 @@ public abstract class Controller<T extends Application> {
     protected T getApplication() {
         return application;
     }
+
 }

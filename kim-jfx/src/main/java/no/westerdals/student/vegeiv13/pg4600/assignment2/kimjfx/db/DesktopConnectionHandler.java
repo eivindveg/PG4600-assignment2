@@ -18,9 +18,8 @@ public class DesktopConnectionHandler extends ConnectionHandler {
         try {
             Class.forName("org.sqlite.JDBC");
             File file = OSHandler.getWorkingDirectory();
-            System.out.println(file.getAbsolutePath());
             String dbConnectionString = "jdbc:sqlite:/" + file.getAbsolutePath();
-             connectionSource = new JdbcConnectionSource(dbConnectionString);
+            connectionSource = new JdbcConnectionSource(dbConnectionString);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
@@ -28,12 +27,9 @@ public class DesktopConnectionHandler extends ConnectionHandler {
 
     public <T, ID> Dao<T, ID> getDao(Class<T> clazz) {
         try {
-            System.out.println("Getting dao");
             Dao<T, ID> dao = DaoFactory.createDao(connectionSource, clazz);
-            System.out.println("Dao made");
             System.setProperty(TableCreator.AUTO_CREATE_TABLES, "true");
             TableUtils.createTableIfNotExists(connectionSource, clazz);
-            System.out.println("Tables made");
             return dao;
         } catch (SQLException e) {
             e.printStackTrace();

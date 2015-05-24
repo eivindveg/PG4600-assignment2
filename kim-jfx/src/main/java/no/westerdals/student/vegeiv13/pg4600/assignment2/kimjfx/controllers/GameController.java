@@ -8,8 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.VBox;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.KimGame;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.concurrent.WordsTask;
@@ -24,20 +25,24 @@ import java.util.List;
 public class GameController extends Controller<KimGame> {
 
 
+    public Label label;
     @FXML
-    public ListView<KimWord> wordList;
+    private ListView<KimWord> wordList;
 
     @FXML
-    public VBox root;
+    private VBox root;
 
     @FXML
-    public VBox alternatives;
+    private VBox alternatives;
 
     @FXML
-    public Button readyButton;
+    private Button readyButton;
 
     @FXML
-    private HBox progressBox;
+    private Button quit;
+
+    @FXML
+    private ProgressIndicator progress;
 
     private Difficulty difficulty;
     private Game game;
@@ -50,11 +55,12 @@ public class GameController extends Controller<KimGame> {
     @Override
     public void setApplication(final KimGame application) {
         super.setApplication(application);
+        quit.setOnAction(event1 -> handleScore());
         //root.getChildren().remove(alternatives);
         Dao<KimWord, Integer> dao = application.getConnectionHandler().getDao(KimWord.class);
 
         wordList.getItems().addListener((ListChangeListener<? super KimWord>) c ->
-                wordList.setPrefSize(wordList.getPrefWidth(), wordList.getItems().size() * 24)
+                wordList.setPrefSize(wordList.getPrefWidth(), (wordList.getItems().size() * 24) + 12)
         );
 
         round.addListener((observable, oldValue, newValue) -> {
@@ -72,9 +78,15 @@ public class GameController extends Controller<KimGame> {
         new Thread(task).start();
     }
 
+    @Override
+    public Node getRoot() {
+        return root;
+    }
+
     private void startGame(final List<KimWord> value) {
+        label.setText("Press ready when you've memorized the words!");
         ObservableList<Node> children = root.getChildren();
-        children.remove(progressBox);
+        progress.setVisible(false);
         if (!children.contains(readyButton)) {
             children.add(readyButton);
         }
@@ -85,6 +97,7 @@ public class GameController extends Controller<KimGame> {
     }
 
     private void displayAlternatives() {
+        label.setText("Please select the word you think is missing from the list");
         Round round = this.round.getValue();
         wordList.getItems().setAll(round.displayWordsWithoutAnswer());
         root.getChildren().remove(readyButton);
@@ -95,13 +108,21 @@ public class GameController extends Controller<KimGame> {
             button.setOnAction(event -> {
                 boolean correct = game.guessAnswer(word);
                 if (!correct) {
-                    getApplication().startPostGame(game.getScore());
+                    handleScore();
                 } else {
                     System.out.println("Correct");
                     this.round.setValue(game.getRound());
                 }
             });
             alternatives.getChildren().add(button);
+        }
+    }
+
+    private void handleScore() {
+        if (game.getScore() <= 0) {
+            getApplication().startLeaderBoard();
+        } else {
+            getApplication().startPostGame(game.getScore());
         }
     }
 

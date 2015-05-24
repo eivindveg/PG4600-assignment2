@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers.HomeController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500" prefWidth="330" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers.HomeController">
    <top>
       <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Welcome to Kim's Game!" BorderPane.alignment="CENTER" />
    </top>

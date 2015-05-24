@@ -2,9 +2,11 @@ package no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.layout.BorderPane;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.KimGame;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.helpers.Controller;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.models.Difficulty;
@@ -12,16 +14,15 @@ import no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.models.Difficult
 public class HomeController extends Controller<KimGame> {
 
     @FXML
+    private BorderPane root;
+    @FXML
     private ListView<Difficulty> difficulties;
 
     @FXML
     private Button scores;
 
-    private int timesPlayed = 0;
-
     @FXML
     public void play() {
-        timesPlayed++;
         MultipleSelectionModel<Difficulty> selectionModel = difficulties.getSelectionModel();
         if(!selectionModel.isEmpty()) {
             getApplication().startGame(selectionModel.getSelectedItem());
@@ -42,6 +43,11 @@ public class HomeController extends Controller<KimGame> {
         scores.setOnAction(event -> {
             application.startLeaderBoard();
         });
+    }
+
+    @Override
+    public Node getRoot() {
+        return root;
     }
 
 }

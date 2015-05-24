@@ -1,6 +1,7 @@
 package no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.helpers;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 
 public abstract class Controller<T extends Application> {
 
@@ -13,5 +14,7 @@ public abstract class Controller<T extends Application> {
     protected T getApplication() {
         return application;
     }
+
+    public abstract Node getRoot();
 
 }

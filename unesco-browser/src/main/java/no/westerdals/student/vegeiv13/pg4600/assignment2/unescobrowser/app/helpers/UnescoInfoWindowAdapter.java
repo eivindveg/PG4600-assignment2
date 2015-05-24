@@ -1,4 +1,4 @@
-package no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app;
+package no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.helpers;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -7,23 +7,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
+import no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.R;
+import no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.concurrent.ImageDownloadWorker;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.models.HeritageSite;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class UnescoInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
-    private final ExecutorService executor;
     private View convertView;
     private LayoutInflater inflater;
     private List<HeritageSite> sites;
+    private ImageDownloadWorker task;
 
     public UnescoInfoWindowAdapter(final LayoutInflater inflater, final List<HeritageSite> sites) {
         this.inflater = inflater;
         this.sites = sites;
-        executor = Executors.newSingleThreadExecutor();
     }
 
 
@@ -47,16 +46,18 @@ public class UnescoInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.map_info_window, null);
         }
+        if(task != null) {
+            task.cancel(true);
+        }
         HeritageSite site = findSiteByMarkerId(marker.getId());
         if (site == null) {
             return null;
         }
-
         TextView titleView = (TextView) convertView.findViewById(R.id.info_title);
         titleView.setText(site.getTitle());
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.info_image);
-        ImageDownloadWorker task = new ImageDownloadWorker(site.getImage(), imageView);
+        task = new ImageDownloadWorker(inflater.getContext(), site.getImage(), imageView);
         task.execute();
 
         TextView descriptionView = (TextView) convertView.findViewById(R.id.info_description);

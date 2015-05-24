@@ -81,19 +81,15 @@ public abstract class BaseActivity extends Activity {
 
     private void selectItem(final int position) {
         mDrawerLayout.closeDrawer(mDrawerList);
-        Class<? extends BaseActivity> intentClass;
+        mDrawerList.setSelected(false);
         switch (position) {
             case 0:
                 refresh();
-                return;
+                break;
             case 1:
                 finish();
-                return;
-            default:
-                return;
+                break;
         }
-        // Unreachable in this case
-        //startActivity(new Intent(this, intentClass));
     }
 
     public abstract void refresh();

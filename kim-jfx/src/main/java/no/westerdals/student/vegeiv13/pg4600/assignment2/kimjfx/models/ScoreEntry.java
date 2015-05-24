@@ -40,6 +40,11 @@ public class ScoreEntry {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%-20s%s", playerName, score);
+    }
+
     public void setId(final Integer id) {
         this.id = id;
     }

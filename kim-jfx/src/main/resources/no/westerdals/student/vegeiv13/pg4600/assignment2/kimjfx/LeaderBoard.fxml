@@ -6,8 +6,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            prefHeight="500" prefWidth="330"
             fx:controller="no.westerdals.student.vegeiv13.pg4600.assignment2.kimjfx.controllers.LeaderboardController">
     <top>
         <Label text="High Scores" BorderPane.alignment="CENTER">

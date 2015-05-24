@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.UnescoInfoWindowAdapter;
+import no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.helpers.UnescoInfoWindowAdapter;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.helpers.HeritageSiteHelper;
 import no.westerdals.student.vegeiv13.pg4600.assignment2.unescobrowser.app.models.HeritageSite;
 import org.jsoup.Jsoup;

@@ -8,5 +8,5 @@ public abstract class ConnectionHandler {
 
     }
 
-    public abstract <T, ID> Dao<T, ID> getDao(Class<T> clazz);
+    public abstract <T, ID> Dao getDao(Class<T> clazz);
 }

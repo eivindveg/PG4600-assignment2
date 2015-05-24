@@ -31,6 +31,6 @@
             android:layout_below="@+id/info_image"
             android:layout_centerHorizontal="true"
             android:textAlignment="center"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
 </RelativeLayout>

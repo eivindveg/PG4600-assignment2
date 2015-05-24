@@ -9,5 +9,4 @@
         android:clickable="true"
         map:uiCompass="true"
         map:zOrderOnTop="true"
-        map:uiZoomControls="true"
-        android:background="#00000000" />
+        map:uiZoomControls="true" />

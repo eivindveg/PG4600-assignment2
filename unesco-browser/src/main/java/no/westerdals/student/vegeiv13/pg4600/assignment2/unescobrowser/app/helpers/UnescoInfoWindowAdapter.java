@@ -41,6 +41,7 @@ public class UnescoInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         return null;
     }
 
+    @SuppressWarnings("Annotator")
     @Override
     public View getInfoContents(final Marker marker) {
         if (convertView == null) {
